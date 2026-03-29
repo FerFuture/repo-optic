@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased transition-colors duration-300 dark:bg-night dark:text-cream;
+  }
+}
+
+/* Scalloped circle approximation via clip-path */
+.hero-scallop {
+  clip-path: polygon(
+    50% 0%,
+    61% 1%,
+    71% 4%,
+    80% 9%,
+    88% 16%,
+    94% 25%,
+    98% 35%,
+    100% 50%,
+    98% 65%,
+    94% 75%,
+    88% 84%,
+    80% 91%,
+    71% 96%,
+    61% 99%,
+    50% 100%,
+    39% 99%,
+    29% 96%,
+    20% 91%,
+    12% 84%,
+    6% 75%,
+    2% 65%,
+    0% 50%,
+    2% 35%,
+    6% 25%,
+    12% 16%,
+    20% 9%,
+    29% 4%,
+    39% 1%
+  );
+}
+
+.product-arch {
+  border-radius: 50% 50% 0 0;
+}
+
+/* Swiper: bullets acorde a la marca */
+.product-swiper .swiper-pagination-bullet {
+  @apply bg-ink/25 opacity-100;
+}
+.product-swiper .swiper-pagination-bullet-active {
+  @apply bg-teal scale-110;
+}
+
+.dark .product-swiper .swiper-pagination-bullet {
+  @apply bg-white/20;
+}
+.dark .product-swiper .swiper-pagination-bullet-active {
+  @apply bg-nightTeal;
+}
+
+/* Carruseles: transición más fluida al cambiar de slide */
+.product-swiper .swiper-wrapper,
+.accesorios-swiper .swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Sombras coverflow: toque teal en claro, más profundas en oscuro */
+.product-swiper.swiper-3d .swiper-slide-shadow-left,
+.accesorios-swiper.swiper-3d .swiper-slide-shadow-left {
+  background-image: linear-gradient(to left, rgba(0, 109, 119, 0.28), transparent);
+}
+.product-swiper.swiper-3d .swiper-slide-shadow-right,
+.accesorios-swiper.swiper-3d .swiper-slide-shadow-right {
+  background-image: linear-gradient(to right, rgba(0, 109, 119, 0.28), transparent);
+}
+.dark .product-swiper.swiper-3d .swiper-slide-shadow-left,
+.dark .accesorios-swiper.swiper-3d .swiper-slide-shadow-left {
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.65), transparent);
+}
+.dark .product-swiper.swiper-3d .swiper-slide-shadow-right,
+.dark .accesorios-swiper.swiper-3d .swiper-slide-shadow-right {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.65), transparent);
+}
+
+/* Slide central: brillo suave al quedar enfocado */
+.product-swiper .swiper-slide-active article,
+.accesorios-swiper .swiper-slide-active article {
+  transition: filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 16px 32px rgba(0, 109, 119, 0.14));
+}
+.dark .product-swiper .swiper-slide-active article,
+.dark .accesorios-swiper .swiper-slide-active article {
+  filter: drop-shadow(0 18px 36px rgba(110, 184, 179, 0.22));
+}
